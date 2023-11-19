@@ -1,0 +1,26 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input,select{
+    padding: 10px;
+    margin: 10px;
+    background: #fff;
+    color: #000;
+    font-size: 20px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+}
+
+.content{
+    margin: 1rem;
+    padding: 1rem;
+}
+
+ul,details{
+    margin: 5px;
+    padding: 5px;
+}
