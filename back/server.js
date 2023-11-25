@@ -12,9 +12,7 @@ let logdata =[]
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
 
 // Endpoint to receive and store log data
 app.post('/api/logs', async (req, res) => { 
@@ -27,8 +25,7 @@ app.post('/api/logs', async (req, res) => {
       traceId:req.body.traceId,
       spanId:req.body.spanId,
       commit:req.body.commit,
-      metadata:req.body.metadata,
-      timestamp:new Date()
+      metadata:req.body.metadata
   })
   let savedLogdata = await logs.save()
   logdata.push(savedLogdata)

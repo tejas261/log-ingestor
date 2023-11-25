@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import Input from "./Input";
 
 const App = () => {
-  const [logs, setLogs] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterField, setFilterField] = useState("message");
+  const [logs, setLogs] = useState([]); //final place to store the logs 
+  const [searchTerm, setSearchTerm] = useState(""); //Get the value entered in the search box
+  const [filterField, setFilterField] = useState("message");  //To get the value selected from the listed filters
   const [logData, setlogData] = useState([]);
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+
 
   useEffect(() => {
     axios
@@ -17,6 +17,11 @@ const App = () => {
       .catch((error) => console.error("Error fetching log data:", error));
   }, []);
 
+let handleChange = (e)=>{
+  setSearchTerm(e.target.value)
+  handleSearch()
+}
+
   const handleSearch = () => {
     
     let filteredLogs = logs.filter((log) =>
@@ -24,11 +29,13 @@ const App = () => {
     );
     
     if (filterField) {
-      filteredLogs = logs.filter((log) =>
-      log[filterField].toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      const fieldFilteredLogs = logs.filter(log =>
+        log[filterField].toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setlogData(fieldFilteredLogs);
+    } else {
       setlogData(filteredLogs);
-    } 
+    }
     
     if (startTime && endTime) {
       const startTimestamp = new Date(startTime).getTime();
@@ -36,8 +43,8 @@ const App = () => {
       filteredLogs = filteredLogs.filter(log =>
         log.timestamp >= startTimestamp && log.timestamp <= endTimestamp
       );
+      setlogData(filteredLogs);
     }
-    setlogData(filteredLogs);
   };
 
   return (
@@ -47,7 +54,7 @@ const App = () => {
         type="text"
         placeholder="Search logs..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleChange}
       />
       <select onChange={(e) => setFilterField(e.target.value)}>
         <option value="message">Message</option>
@@ -55,20 +62,10 @@ const App = () => {
         <option value="resourceId">ResourceId</option>
         <option value="traceId">TraceId</option>
         <option value="spanId">SpanId</option>
+        <option value="timestamp">Timestamp</option>
         <option value="commit">Commit</option>
       </select>
-      <label>Start Date:</label>
-      <input
-        type="date"
-        value={startTime}
-        onChange={(e) => setStartTime(e.target.value)}
-      />
-      <label>End Date:</label>
-      <input
-        type="date"
-        value={endTime}
-        onChange={(e) => setEndTime(e.target.value)}
-      />
+      {filterField=="timestamp" ? <Input/> : "" }
       <button onClick={handleSearch}>Search</button>
 
       <ul>

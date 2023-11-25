@@ -3,15 +3,14 @@ const schema = new mongoose.Schema({
   level: String,
   message: String,
   resourceId: String,
-  timeStamp: String,
+  timestamp: String,
   traceId: String,
-  spanid: String,
+  spanId: String,
   commit: String,
   metadata: 
       {
         parentResourceId: String,
       },
-  timestamp: Date
  
 });
 
