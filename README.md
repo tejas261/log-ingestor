@@ -113,7 +113,7 @@ http://localhost:3000/api/logs
 <!-- CONTRIBUTING -->
 ## Features Implemented
 - Implemented a web based UI for full-text search across logs.
-- Implemented search within specific date range
+- Implemented search within specific date range(partially)
 - Provides real-time log ingestion and searching capabilities.
 - Include filters based on:
     - level
