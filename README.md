@@ -113,7 +113,7 @@ http://localhost:3000/api/logs
 <!-- CONTRIBUTING -->
 ## Features Implemented
 - Implemented a web based UI for full-text search across logs.
-- Implemented search within specific date range(partially)
+- Implemented search within specific date range
 - Provides real-time log ingestion and searching capabilities.
 - Include filters based on:
     - level
@@ -123,11 +123,6 @@ http://localhost:3000/api/logs
     - traceId
     - spanId
     - commit
-
-## Issues identified
--  Searching based on the metadata doesn't seem to work.
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- CONTACT -->
 ## Contact
